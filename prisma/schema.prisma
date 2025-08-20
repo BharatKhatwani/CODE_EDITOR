@@ -1,0 +1,18 @@
+// Prisma client generator
+generator client {
+  provider = "prisma-client-js"
+  // output   = "../lib/generated/prisma"  // optional custom path
+}
+
+// Database connection
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")   // should be in .env
+}
+
+// User model
+model User {
+  id    String @id @default(cuid()) @map("_id")
+  name  String?
+  email String @unique
+}
